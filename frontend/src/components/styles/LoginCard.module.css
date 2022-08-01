@@ -1,0 +1,16 @@
+.loginCard {
+    display: flex;
+    flex-direction: row;
+}
+
+.loginFormContainer {
+    width: 950px;
+    height: 800px;
+    background-color: red;
+}
+
+.welcomeMessageContainer {
+    width: 475px;
+    height: 800px;
+    background-color: purple;
+}
