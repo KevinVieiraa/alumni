@@ -1,16 +1,52 @@
 .loginCard {
     display: flex;
     flex-direction: row;
+    max-width: 1300px;
+    min-width: 800px;
+    max-height: 700px;
+    min-height: 500px;
+    width: 75%;
+    height: 75%;
+
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -45%);
+    transform: translate(-50%, -45%);
+
+    box-shadow: 0px 4px 23px 3px rgba(0,0,0,0.3);
+    border-radius: 20px;
 }
 
 .loginFormContainer {
-    width: 950px;
-    height: 800px;
-    background-color: red;
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px 0px 0px 20px;
+}
+
+.loginForm {
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    margin: 0px auto;
+    width: 90px;
+    height: 60px;
+}
+
+.loginTitle {
+    font-size: 30px;
+    font-weight: bold;
+    color: #636363;
 }
 
 .welcomeMessageContainer {
-    width: 475px;
-    height: 800px;
-    background-color: purple;
+    width: 30%;
+    background-color: #6d597a;
+    border-radius: 0px 20px 20px 0px;
 }
