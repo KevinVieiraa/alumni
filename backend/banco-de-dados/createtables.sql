@@ -127,3 +127,9 @@ ALTER TABLE DisciplinaSimulada
 ADD CONSTRAINT constraint_disciplinasimulada_aba
 FOREIGN KEY (id_aba) 
 REFERENCES AbaSimulacao (id_aba);
+
+INSERT INTO Curso (nome_curso)
+VALUES ('Ciência da Computação');
+
+INSERT INTO Aluno (nome, email, senha, id_curso)
+VALUES ('Débora Ghiotti','debora.ghiotti@gmail.com','123',1);
