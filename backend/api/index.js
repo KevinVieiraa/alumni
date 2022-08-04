@@ -5,6 +5,8 @@ const port = 3000;
 
 //Rotas
 const AlunoRoutes = require('./routes/AlunoRoutes');
+const DisciplinaAlunoRoutes = require('./routes/DisciplinaAlunoRoutes');
+const CursoRoutes = require('./routes/CursoRoutes');
 
 //Parser das informações do request
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +19,8 @@ app.use(express.json());
 
 //Rota de batalhas
 app.use('/aluno', AlunoRoutes);
+app.use('/disciplinaAluno', DisciplinaAlunoRoutes);
+app.use('/curso', CursoRoutes);
 
 //Retorno de rotas inválidas
 app.use(function(req, res, next) {
