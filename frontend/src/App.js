@@ -1,11 +1,14 @@
 import React from 'react';
-import LoginCard from './components/LoginCard';
+// import {BrowseRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import './App.css';
+// import LoginCard from './components/LoginCard';
+import SignUpCard from './components/SignUpCard';
 
 function App() {
 	return (
 		<div className="App">
-			<LoginCard/>
+			{/* <LoginCard/> */}
+			<SignUpCard/>
 		</div>
 	);
 }
