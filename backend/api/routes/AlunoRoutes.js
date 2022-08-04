@@ -16,4 +16,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/criarAluno', async (req, res) => {
+    const query = req.query;
+    console.log(query)
+    try{
+        let result = await alunoController.criarAluno(query.nome, query.email, query.senha, query.id_curso);
+        res.status(201).json(result);
+    }
+    catch(error) {
+        res.status(400).json({
+            "message": error.toString()
+        });
+    }
+});
+
 module.exports = router;

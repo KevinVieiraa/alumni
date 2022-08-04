@@ -131,5 +131,6 @@ REFERENCES AbaSimulacao (id_aba);
 INSERT INTO Curso (nome_curso)
 VALUES ('Ciência da Computação');
 
-INSERT INTO Aluno (nome, email, senha, id_curso)
-VALUES ('Débora Ghiotti','debora.ghiotti@gmail.com','123',1);
+INSERT INTO Disciplina (codigo, nome_disciplina,periodo,creditos,carga_horaria, obrigatoria, id_curso)
+VALUES ('INF666','Projetao',8,6,500,TRUE,1), 
+('INF777','Banco de Dados',7,4,60,TRUE,1);
