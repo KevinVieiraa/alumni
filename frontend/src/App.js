@@ -1,15 +1,26 @@
 import React from 'react';
-// import {BrowseRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+
 import './App.css';
+
 // import LoginCard from './components/LoginCard';
-import SignUpCard from './components/SignUpCard';
+// import SignUpCard from './components/SignUpCard';
+// import Sidebar from './components/Sidebar';
+// import SubjectsCard from './components/SubjectsCard';
+
 
 function App() {
 	return (
-		<div className="App">
-			{/* <LoginCard/> */}
-			<SignUpCard/>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element = { <Navigate to="login"/> } />
+				<Route path="/login" element = { <Login/> } />
+				<Route path="/signup" element = { <SignUp/> } />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

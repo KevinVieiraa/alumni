@@ -1,0 +1,100 @@
+.selectableSubjectContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 695px;
+    height: 50px;
+    padding-bottom: 40px;
+}
+
+.period {
+    background-color: #3F3D56;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+
+    line-height: 50px;
+    color: #F5F5F5;
+    font-size: 20px;
+    font-weight: bold;
+    
+    align-self: center;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.subjectInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.subjectInfo h1 {
+    margin: 0px;
+    color: #4A4A4A;
+    font-size: 22px;
+}
+
+.subjectInfo h2 {
+    margin: 0px;
+    color: #777777;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.subjectCredits {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.subjectCredits h1 {
+    margin: 0px;
+    color: #777777;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.subjectCredits h2 {
+    margin: 0px;
+    color: #777777;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.prerequisites {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.prerequisites h1 {
+    margin: 0px;
+    color: #777777;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.prerequisites h2 {
+    margin: 0px;
+    color: #777777;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.selectContainer h1 {
+    margin: 0px;
+    color: #777777;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
