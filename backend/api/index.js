@@ -3,6 +3,27 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
+//importação das rotas
+const AnotacaoRoute = require('./routes/AnotacaoRoute')
+const AtividadeRoute = require('./routes/AtividadeRoute')
+const AbaSimulacaoRoute = require('./routes/AbaSimulacaoRoute')
+const DisciplinaSimuladaRoute = require('./routes/DisciplinaSimuladaRoute')
+
+//parser das informações do request
+app.use(express.urlencoded({ extended: true }));
+
+//tratar o CORS
+app.use(cors());
+
+//parser das informações de um POST
+app.use(express.json());
+
+//utilização das rotas
+app.use('/Anotacao', AnotacaoRoute);
+app.use('/Atividade', AtividadeRoute);
+app.use('/AbaSimulacao', AbaSimulacaoRoute);
+app.use('/DisciplinaSimulada', DisciplinaSimuladaRoute);
+
 //Rotas
 const AlunoRoutes = require('./routes/AlunoRoutes');
 const DisciplinaAlunoRoutes = require('./routes/DisciplinaAlunoRoutes');
@@ -28,7 +49,6 @@ app.use(function(req, res, next) {
         "message": "Requisição inválida. Consulte a documentação para uma utilização adequada"
     });
 });
-
 
 app.listen(port, () => {
     console.log(`Servidor executando na porta ${port}`);
