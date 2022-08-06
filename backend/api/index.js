@@ -6,6 +6,8 @@ const port = 3000;
 //importação das rotas
 const AnotacaoRoute = require('./routes/AnotacaoRoute')
 const AtividadeRoute = require('./routes/AtividadeRoute')
+const AbaSimulacaoRoute = require('./routes/AbaSimulacaoRoute')
+const DisciplinaSimuladaRoute = require('./routes/DisciplinaSimuladaRoute')
 
 //parser das informações do request
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +21,8 @@ app.use(express.json());
 //utilização das rotas
 app.use('/Anotacao', AnotacaoRoute);
 app.use('/Atividade', AtividadeRoute);
+app.use('/AbaSimulacao', AbaSimulacaoRoute);
+app.use('/DisciplinaSimulada', DisciplinaSimuladaRoute);
 
 //Retorno de rotas inválidas
 app.use(function(req, res, next) {
