@@ -16,7 +16,7 @@ async function criarAluno(nome, email, senha, id_curso) {
 
     let id_aluno = queryResult.rows[0].id_aluno;
     let queryResult2 = await criarDisciplinasAluno(id_aluno,id_curso);
-    //console.log(queryResult2);
+    let queryResult3 = await criarAnotacao(id_aluno);
 
     let result = queryResult;
 
@@ -40,6 +40,13 @@ async function criarDisciplinasAluno(id_aluno, id_curso) {
     return result;
 }
 
+
+async function criarAnotacao(id_aluno){
+    let query = `INSERT INTO Anotacao (id_aluno, texto_anotacao) VALUES (${id_aluno},' ');`
+    let queryResult = await pool.query(query);
+    let result = {"message":"Anotacao criada com sucesso!"}
+    return result
+}
 
 
 module.exports = {autenticacaoAluno,criarAluno, criarDisciplinasAluno};
