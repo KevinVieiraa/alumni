@@ -1,13 +1,6 @@
 # docker-compose.yml
 version: "2.2"
 services:
-  # app :
-  #   build: ./app/
-  #   ports:
-  #     - "80:80"
-  #   depends_on: 
-  #     db:
-  #       condition: service_healthy
   db:
     build: ./backend/banco-de-dados/
     healthcheck:
@@ -15,3 +8,13 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  node:
+    build: ./backend/api/
+    container_name: node
+    command: node index.js
+    ports: 
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
