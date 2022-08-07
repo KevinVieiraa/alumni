@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const disciplinaAlunoController = require('../controllers/DisciplinaAlunoController');
 
-router.get('/disciplinasPeriodo', async (req, res) => {
+router.get('/listaDisciplinasPeriodo', async (req, res) => {
     const query = req.query;
 
     try {
@@ -16,7 +16,7 @@ router.get('/disciplinasPeriodo', async (req, res) => {
     }
 });
 
-router.get('/disciplinasAluno', async (req, res) => {
+router.get('/listaDisciplinasAluno', async (req, res) => {
     const query = req.query;
 
     try {
@@ -30,7 +30,7 @@ router.get('/disciplinasAluno', async (req, res) => {
     }
 });
 
-router.get('/alunoDisciplina', async (req, res) => {
+router.get('/infoDisciplinaAluno', async (req, res) => {
     const query = req.query;
 
     try {

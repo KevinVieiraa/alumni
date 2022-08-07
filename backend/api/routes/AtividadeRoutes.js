@@ -22,7 +22,6 @@ router.post('/criarAtividade', async (req, res) => {
     console.log(query)
     try{
         let result = await atividadeController.criarAtividade(query.titulo, query.categoria, query.local, query.carga_horaria, query.data_inicio, query.data_fim, query.id_aluno);
-        //let result = {"idAluno" : query.id_aluno, "titulo" : query.titulo};
         res.status(201).json(result);
     }
     catch(error) {

@@ -7,7 +7,7 @@ router.get('/', async(req, res) => {
     const query = req.query;
     console.log(query)
     try{
-        let result = await anotacaoController.getAnotacao(query.idAluno);
+        let result = await anotacaoController.getAnotacao(query.id_aluno);
         res.status(200).json(result);
     }
     catch(error) {
@@ -21,7 +21,7 @@ router.patch('/editarAnotacao', async (req, res) => {
     const query = req.query;
     console.log(query)
     try{
-        let result = await anotacaoController.editarAnotacao(query.idAluno, query.conteudo);
+        let result = await anotacaoController.editarAnotacao(query.id_aluno, query.conteudo);
         res.status(201).json(result);
     }
     catch(error) {

@@ -1,16 +1,16 @@
 const request = require('request');
 const pool = require('../db.js');
 
-async function getAnotacao (idAluno) {
-    let query = `SELECT texto_anotacao FROM Anotacao WHERE id_aluno = ${idAluno}`;
+async function getAnotacao (id_aluno) {
+    let query = `SELECT texto_anotacao FROM Anotacao WHERE id_aluno = ${id_aluno}`;
     let queryResult = await pool.query(query);
     let result = queryResult.rows;
 
     return result;
 };
 
-async function editarAnotacao (idAluno,conteudo) {
-    let query = `UPDATE Anotacao SET texto_anotacao = '${conteudo}' WHERE id_aluno = ${idAluno}`;
+async function editarAnotacao (id_aluno,conteudo) {
+    let query = `UPDATE Anotacao SET texto_anotacao = '${conteudo}' WHERE id_aluno = ${id_aluno}`;
     let queryResult = await pool.query(query);
     let result = queryResult.rows;
 

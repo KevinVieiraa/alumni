@@ -4,10 +4,18 @@ const app = express();
 const port = 3000;
 
 //importação das rotas
-const AnotacaoRoute = require('./routes/AnotacaoRoute')
-const AtividadeRoute = require('./routes/AtividadeRoute')
-const AbaSimulacaoRoute = require('./routes/AbaSimulacaoRoute')
-const DisciplinaSimuladaRoute = require('./routes/DisciplinaSimuladaRoute')
+const AnotacaoRoute = require('./routes/AnotacaoRoutes')
+const AtividadeRoute = require('./routes/AtividadeRoutes')
+const AbaSimulacaoRoute = require('./routes/AbaSimulacaoRoutes')
+const DisciplinaSimuladaRoute = require('./routes/DisciplinaSimuladaRoutes')
+const AlunoRoutes = require('./routes/AlunoRoutes');
+const DisciplinaAlunoRoutes = require('./routes/DisciplinaAlunoRoutes');
+const CursoRoutes = require('./routes/CursoRoutes');
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 //parser das informações do request
 app.use(express.urlencoded({ extended: true }));
@@ -19,15 +27,13 @@ app.use(cors());
 app.use(express.json());
 
 //utilização das rotas
-app.use('/Anotacao', AnotacaoRoute);
-app.use('/Atividade', AtividadeRoute);
-app.use('/AbaSimulacao', AbaSimulacaoRoute);
-app.use('/DisciplinaSimulada', DisciplinaSimuladaRoute);
-
-//Rotas
-const AlunoRoutes = require('./routes/AlunoRoutes');
-const DisciplinaAlunoRoutes = require('./routes/DisciplinaAlunoRoutes');
-const CursoRoutes = require('./routes/CursoRoutes');
+app.use('/aluno', AlunoRoutes);
+app.use('/disciplinaAluno', DisciplinaAlunoRoutes);
+app.use('/curso', CursoRoutes);
+app.use('/anotacao', AnotacaoRoute);
+app.use('/atividade', AtividadeRoute);
+app.use('/abaSimulacao', AbaSimulacaoRoute);
+app.use('/disciplinaSimulada', DisciplinaSimuladaRoute);
 
 //Parser das informações do request
 app.use(express.urlencoded({ extended: true }));
@@ -37,11 +43,6 @@ app.use(cors());
 
 //Parser das informações de um POST
 app.use(express.json());
-
-//Rota de batalhas
-app.use('/aluno', AlunoRoutes);
-app.use('/disciplinaAluno', DisciplinaAlunoRoutes);
-app.use('/curso', CursoRoutes);
 
 //Retorno de rotas inválidas
 app.use(function(req, res, next) {
