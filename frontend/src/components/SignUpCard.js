@@ -1,5 +1,6 @@
 import React from 'react';
-import { TextField, Button } from '@mui/material/'
+import { TextField, Button } from '@mui/material/';
+import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from './styles/SignUpCard.module.css'
 
@@ -58,9 +59,15 @@ class SignUpCard extends React.Component {
                                 variant="standard"
                                 sx = {{ mb:10 }}
                             />
-                            <Button variant="contained" size="large" sx={{ pt:1.5, pb:1.5, mb:2, fontWeight: 600 }}>CADASTRAR-SE</Button>
+                            <Button 
+                                variant="contained" 
+                                size="large" 
+                                sx={{ pt:1.5, pb:1.5, mb:2, fontWeight: 600 }}
+                            >
+                                CADASTRAR-SE
+                            </Button>
                             <h2 class={styles.registerText}>
-                                Já possui uma conta? <button class={styles.registerButton}>Entre</button>
+                                Já possui uma conta? <Link to="/login"><button class={styles.registerButton}>Entre</button></Link>
                             </h2>
                         </div>
                     </div>

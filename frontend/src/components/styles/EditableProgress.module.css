@@ -1,0 +1,56 @@
+.selectableSubjectContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 695px;
+    height: 50px;
+    padding: 20px 20px 20px 20px;
+    border-bottom: 1px solid #ADADAD;
+}
+
+.progressName {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.progressName h1 {
+    margin: 0px;
+    color: #4A4A4A;
+    font-size: 22px;
+}
+
+.progressName h2 {
+    margin: 0px;
+    color: #777777;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.progressInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.progressInfo h1 {
+    margin: 0px;
+    color: #777777;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.progressInfo h2 {
+    margin: 0px;
+    color: #777777;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.deleteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -3,14 +3,11 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Home from './pages/Home';
+import Disciplinas from './pages/Disciplinas';
+import Progresso from './pages/Progresso';
 
 import './App.css';
-
-// import LoginCard from './components/LoginCard';
-// import SignUpCard from './components/SignUpCard';
-// import Sidebar from './components/Sidebar';
-// import SubjectsCard from './components/SubjectsCard';
-
 
 function App() {
 	return (
@@ -19,6 +16,9 @@ function App() {
 				<Route path="/" element = { <Navigate to="login"/> } />
 				<Route path="/login" element = { <Login/> } />
 				<Route path="/signup" element = { <SignUp/> } />
+				<Route path="/home" element = { <Home/> } />
+				<Route path="/disciplinas" element = { <Disciplinas/> } />
+				<Route path="/progresso" element = { <Progresso/> } />
 			</Routes>
 		</BrowserRouter>
 	);

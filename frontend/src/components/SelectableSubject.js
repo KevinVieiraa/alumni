@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from '@mui/material/';
+import { Switch, Select, MenuItem } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from './styles/SelectableSubject.module.css'
 
@@ -13,6 +13,29 @@ const customTheme = createTheme({
 
 class SelectableSubject extends React.Component {
     render() {
+        let check;
+        if(this.props.checkType === 'status') {
+            check = <div class={styles.selectContainer}>
+                        <Select
+                            value={"Matriculado"}
+                            label="Status"
+                            sx={{
+                                height:1/1
+                            }}
+                        >
+                            <MenuItem value={"Não Realizado"}>Não Realizado</MenuItem>
+                            <MenuItem value={"Matriculado"}>Matriculado</MenuItem>
+                            <MenuItem value={"Concluído"}>Concluído</MenuItem>
+                        </Select>
+                    </div>
+        }
+        else if(this.props.checkType === 'check') {
+            check = <div class={styles.selectContainer}>
+                        <h1>Aprovado?</h1>
+                        <Switch sx={{mx:4}}/>
+                    </div>
+        }
+
         return (
             <ThemeProvider theme={customTheme}>
                 <div class={styles.selectableSubjectContainer}>
@@ -45,10 +68,7 @@ class SelectableSubject extends React.Component {
                             Nenhum
                         </h2>
                     </div>
-                    <div class={styles.selectContainer}>
-                        <h1>Aprovado?</h1>
-                        <Switch sx={{mx:4}}/>
-                    </div>
+                    {check}
                 </div>
             </ThemeProvider>
         )

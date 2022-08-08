@@ -1,5 +1,6 @@
 import React from 'react';
-import { TextField, Button } from '@mui/material/'
+import { TextField, Button } from '@mui/material/';
+import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from './styles/LoginCard.module.css'
 
@@ -36,7 +37,7 @@ class LoginCard extends React.Component {
                             />
                             <Button variant="contained" size="large" sx={{ pt:1.5, pb:1.5, mb:2, fontWeight: 600 }}>ENTRAR</Button>
                             <h2 class={styles.registerText}>
-                                Não tem uma conta? <button class={styles.registerButton}>Cadastre-se</button>
+                                Não tem uma conta? <Link to="/signup"><button class={styles.registerButton}>Cadastre-se</button></Link>
                             </h2>
                         </div>
                         <img class={styles.loginDrawing} src={process.env.PUBLIC_URL + '/pic_01.svg'} alt="" />

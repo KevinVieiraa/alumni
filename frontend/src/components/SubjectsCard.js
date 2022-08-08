@@ -54,14 +54,13 @@ class SubjectsCard extends React.Component {
                         </div>
                     </div>
                     <div class={styles.subjectsContainer}>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
-                        <SelectableSubject/>
+                        <SelectableSubject checkType="check"/>
+                        <SelectableSubject checkType="check"/>
+                        <SelectableSubject checkType="check"/>
+                        <SelectableSubject checkType="check"/>
+                        <SelectableSubject checkType="check"/>
+                        <SelectableSubject checkType="check"/>
+                        <SelectableSubject checkType="check"/>
                     </div>
                 </div>
             </ThemeProvider>
