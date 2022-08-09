@@ -96,6 +96,8 @@ class Sidebar extends React.Component {
                     
                     <div class={styles.exitButtonContainer}>
                         <Button 
+                            component={ Link }
+                            to="/login"
                             variant="outlined" 
                             startIcon={<Logout/>}
                             sx= { buttonStyle }
@@ -103,8 +105,6 @@ class Sidebar extends React.Component {
                                 Sair
                         </Button>
                     </div>
-
-                    {/* <Button variant="contained" size="large" sx={{ pt:1.5, pb:1.5, mb:2, fontWeight: 600 }}>CADASTRAR-SE</Button> */}
                 </div>
             </ThemeProvider>
         )

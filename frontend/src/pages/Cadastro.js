@@ -1,8 +1,7 @@
 import React from 'react';
 import SignUpCard from '../components/SignUpCard';
-// import styles from './styles/SignUp.module.css';
 
-class SignUp extends React.Component {
+class Cadastro extends React.Component {
     render() {
         return (
             <SignUpCard/>
@@ -10,4 +9,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+export default Cadastro;
