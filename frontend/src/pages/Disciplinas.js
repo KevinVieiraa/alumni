@@ -7,7 +7,7 @@ class Disciplinas extends React.Component {
     render() {
         return (
             <div class={styles.subjectsContainer}>
-                <Sidebar/>
+                <Sidebar selectedButton="disciplinas"/>
                 <div class={styles.contentContainer}>
                     <div class={styles.headerContainer}>
                         <h1>

@@ -1,27 +1,33 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LinearProgress } from '@mui/material/';
-import { Star } from '@mui/icons-material/';
+
 import styles from './styles/ProgressCard.module.css'
 
-const customTheme = createTheme({
-    palette: {
-        primary: {
-            main: "#6D597A"
-        }
-    }
-});
 
 class ProgressCard extends React.Component {
     render() {
+        let cardIcon = this.props.cardIcon;
+        let backgroundIcon = this.props.backgroundIcon;
+        let backgroundColor = this.props.backgroundColor;
+        let darkerColor = this.props.darkerColor;
+        let barColor = this.props.barColor;
+        const customTheme = createTheme({
+            palette: {
+                primary: {
+                    main: barColor
+                }
+            }
+        });
+
         return (
             <ThemeProvider theme={customTheme}>
-                <div class={styles.cardContainer}>
-                    <div class={styles.cardIcon}>
-                        <Star sx={{margin:'auto', color:'#404040'}}/>
+                <div class={styles.cardContainer} style={{ 'background-color': backgroundColor }}>
+                    <div class={styles.cardIcon} style={{ 'background-color': darkerColor }} >
+                        { cardIcon }
                     </div>
                     <div class={styles.backgroundIcon}>
-                        <Star sx={{margin:'auto', color:'#D0D0FB'}}/>
+                        { backgroundIcon }
                     </div>
                     <h1>
                         Disciplinas Obrigatórias
@@ -39,7 +45,10 @@ class ProgressCard extends React.Component {
                             <LinearProgress 
                                 variant="determinate" 
                                 value={50}
-                                sx={{ height: 6, borderRadius:8 }}
+                                sx={{ 
+                                    height: 6, 
+                                    borderRadius: 8
+                                }}
                             />
                         </div>
                     </div>

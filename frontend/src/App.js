@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Disciplinas from './pages/Disciplinas';
 import Progresso from './pages/Progresso';
+import Simulador from './pages/Simulador';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
 				<Route path="/home" element = { <Home/> } />
 				<Route path="/disciplinas" element = { <Disciplinas/> } />
 				<Route path="/progresso" element = { <Progresso/> } />
+				<Route path="/simulador" element = { <Simulador/> } />
 			</Routes>
 		</BrowserRouter>
 	);

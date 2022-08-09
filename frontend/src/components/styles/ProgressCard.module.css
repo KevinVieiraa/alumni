@@ -9,6 +9,7 @@
 }
 
 .cardContainer h1 {
+    position: relative;
     margin: 95px 20px 30px 20px;
     font-size: 22px;
     font-weight: bold;
@@ -55,6 +56,6 @@
     position: absolute;
     top: 0px;
     right: 30%;
-    transform: scale(1000%) rotate(70deg);
+    transform: scale(1000%) rotate(225deg);
     z-index: 1;
 }

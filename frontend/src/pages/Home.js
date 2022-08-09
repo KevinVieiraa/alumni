@@ -1,15 +1,17 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import styles from './styles/Home.module.css';
 import { ModeEdit } from '@mui/icons-material/';
+import { Star, Circle, Work } from '@mui/icons-material/';
 import ProgressCard from '../components/ProgressCard';
 import CurrentSubjectCard from '../components/CurrentSubjectCard';
+
+import styles from './styles/Home.module.css';
 
 class Login extends React.Component {
     render() {
         return (
             <div class={styles.homeContainer}>
-                <Sidebar/>
+                <Sidebar selectedButton="home"/>
                 <div class={styles.contentContainer}>
                     <div class={styles.mainContentContainer}>
                         <div class={styles.headerContainer}>
@@ -22,18 +24,36 @@ class Login extends React.Component {
                         </div>
                         <div class={styles.cardsContainer}>
                             <span>
-                                <ProgressCard/>
+                                <ProgressCard 
+                                    cardIcon={<Star sx={{margin:'auto', color:'#404040'}}/>}
+                                    backgroundIcon={<Star sx={{margin:'auto', color:'#D0D0FB'}}/>}
+                                    backgroundColor = '#E4E4FC'
+                                    darkerColor = '#D0D0FB'
+                                    barColor = '#7E67DA'
+                                />
                             </span>
                             <span>
-                                <ProgressCard/>
+                                <ProgressCard 
+                                    cardIcon={<Circle sx={{margin:'auto', color:'#404040'}}/>}
+                                    backgroundIcon={<Circle sx={{margin:'auto', color:'#CBDFF2'}}/>}
+                                    backgroundColor = '#E9F5FE'
+                                    darkerColor = '#CBDFF2'
+                                    barColor = '#7EAACB'
+                                />
                             </span>
                             <span>
-                                <ProgressCard/>
+                                <ProgressCard 
+                                    cardIcon={<Work sx={{margin:'auto', color:'#404040'}}/>}
+                                    backgroundIcon={<Work sx={{margin:'auto', color:'#F2D4CB'}}/>}
+                                    backgroundColor = '#FEF1E9'
+                                    darkerColor = '#F2D4CB'
+                                    barColor = '#CB9A7E'
+                                />
                             </span>
                         </div>
                         <div class={styles.subjectsContainer}>
                             <h1>
-                                Matriculadas
+                                Disciplinas Matriculadas
                             </h1>
                             <div class={styles.subjectsCards}>
                                 <div class={styles.subjectCardContainer}>
