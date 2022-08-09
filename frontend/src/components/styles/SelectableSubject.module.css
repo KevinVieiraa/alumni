@@ -68,6 +68,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 25%;
+}
+
+.prerequisitesSubjects {
+    display: flex;
+    flex-direction: row;
 }
 
 .prerequisites h1 {
@@ -75,15 +81,16 @@
     color: #777777;
     font-size: 18px;
     font-weight: 500;
-    text-align: center;
+    text-align: left;
 }
 
-.prerequisites h2 {
+.prerequisitesSubjects h2 {
     margin: 0px;
     color: #777777;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     text-align: center;
+    padding-right: 20px;
 }
 
 .selectContainer {

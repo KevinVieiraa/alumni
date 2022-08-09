@@ -1,8 +1,11 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
 import { Button } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Add } from '@mui/icons-material/';
+
+import Sidebar from '../components/Sidebar';
+import SelectableSubject from '../components/SelectableSubject';
+
 import styles from './styles/Simulador.module.css';
 
 const customTheme = createTheme({
@@ -22,9 +25,9 @@ class Login extends React.Component {
     render() {
         let buttonStyle = {
             height: 35, 
+            width: 120, 
             my: 0, 
             mx: 0, 
-            width: 120, 
             fontSize: 14, 
             fontWeight: 'bold',
             justifyContent: "center",
@@ -42,9 +45,9 @@ class Login extends React.Component {
 
         let addButtonStyle = {
             height: 35, 
+            width: 35, 
             my: 0, 
             mx: 0, 
-            width: 35, 
             fontSize: 14, 
             fontWeight: 'bold',
             justifyContent: "center",
@@ -60,6 +63,17 @@ class Login extends React.Component {
             }
         };
 
+        let newSubjectButtonStyle = {
+            height: '100%', 
+            width: '100%', 
+            margin: 0, 
+            padding: 0, 
+            fontSize: 14, 
+            fontWeight: 'bold',
+            justifyContent: "center",
+            'border-radius': 100
+        };
+
         return (
             <ThemeProvider theme={customTheme}>
                 <div class={styles.simulationContainer}>
@@ -72,7 +86,20 @@ class Login extends React.Component {
                         </div>
                         <div class={styles.simulationWindowContainer}>
                             <div class={styles.subjectsContainer}>
+                                <SelectableSubject/>
+                                <SelectableSubject/>
+                                <SelectableSubject/>
+                                <SelectableSubject/>
+                                <SelectableSubject/>
 
+                                <div class={styles.newSubjectButtonContainer}>
+                                    <Button 
+                                        variant="contained"
+                                        sx= { newSubjectButtonStyle }
+                                    >
+                                        <Add sx={{margin:0, padding: 0, transform: 'scale(1.5)'}}/>
+                                    </Button>
+                                </div>
                             </div>
                             <div class={styles.buttonsContainer}>
                                 <Button 

@@ -35,6 +35,9 @@ class SelectableSubject extends React.Component {
                         <Switch sx={{mx:4}}/>
                     </div>
         }
+        else {
+            check = <></>
+        }
 
         return (
             <ThemeProvider theme={customTheme}>
@@ -64,9 +67,17 @@ class SelectableSubject extends React.Component {
                         <h1>
                             Pré-requisitos
                         </h1>
-                        <h2>
-                            Nenhum
-                        </h2>
+                        <div class={styles.prerequisitesSubjects}>
+                            <h2>
+                                INF1615
+                            </h2>
+                            <h2>
+                                INF1615
+                            </h2>
+                            <h2>
+                                INF1615
+                            </h2>
+                        </div>
                     </div>
                     {check}
                 </div>
