@@ -99,7 +99,7 @@ const LoginCard = () => {
                 <div class={styles.welcomeMessageContainer}>
                     <img class={styles.loginDrawingCard} src={process.env.PUBLIC_URL + '/pic_02.svg'} alt="" />
                     <h1 class={styles.welcomeMessageTitle}>Alumni</h1>
-                    <h2 class={styles.welcomeMessageSubtitle}>Lorem ipsum dolor sit amet. Curabitur accumsan</h2>
+                    <h2 class={styles.welcomeMessageSubtitle}>A plataforma que você precisa para avançar no curso que você escolheu.</h2>
                 </div>
             </div>
         </ThemeProvider>
