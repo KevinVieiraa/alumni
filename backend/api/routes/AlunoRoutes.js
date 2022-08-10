@@ -8,7 +8,11 @@ router.get('/', async (req, res) => {
 
     try {
         let result = await alunoController.autenticacaoAluno(query.email, query.senha);
-        res.status(200).json(result);
+        if (result == undefined){
+            res.status(204).send();
+        }else{
+            res.status(200).json(result);
+        }
     }
     catch(error) {
         res.status(400).json({

@@ -12,6 +12,7 @@ import Simulador from './pages/Simulador';
 import './App.css';
 
 function App() {
+
 	return (
 		<BrowserRouter>
 			<Routes>

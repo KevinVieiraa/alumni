@@ -1,12 +1,10 @@
 import React from 'react';
 import SignUpCard from '../components/SignUpCard';
 
-class Cadastro extends React.Component {
-    render() {
-        return (
-            <SignUpCard/>
-        )
-    }
+const Cadastro = () => {
+    return (
+        <SignUpCard/>
+    )
 }
 
 export default Cadastro;

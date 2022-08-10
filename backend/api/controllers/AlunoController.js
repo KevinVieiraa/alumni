@@ -11,14 +11,14 @@ async function autenticacaoAluno(email, senha) {
 }
 
 async function criarAluno(nome, email, senha, id_curso) {
-    let query = `INSERT INTO Aluno (nome, email, senha, id_curso) VALUES ('${nome}','${email}','${senha}',${id_curso}) RETURNING id_aluno;`;
+    let query = `INSERT INTO Aluno (nome, email, senha, id_curso) VALUES ('${nome}','${email}','${senha}',${id_curso}) RETURNING nome,email,id_aluno,id_curso;`;
     let queryResult = await pool.query(query);
 
     let id_aluno = queryResult.rows[0].id_aluno;
     let queryResult2 = await criarDisciplinasAluno(id_aluno,id_curso);
     let queryResult3 = await criarAnotacao(id_aluno);
 
-    let result = queryResult;
+    let result = queryResult.rows[0];
 
     return result;
 }
