@@ -1,17 +1,43 @@
 const request = require('request');
 const pool = require('../db.js');
+const bcrypt = require('bcrypt');
 
 //Caso o parametro id tenha sido passado, retorna uma batalha com o id específico, do contrário, retorna todas as batalhas
 async function autenticacaoAluno(email, senha) {
-    let query = `SELECT nome, email, id_aluno, id_curso FROM Aluno where email='${email}' and senha='${senha}'`;
+    let query = `SELECT nome, email, id_aluno, id_curso, senha FROM Aluno where email='${email}'`;
     let queryResult = await pool.query(query);
     let result = queryResult.rows[0];
 
-    return result;
+    if(!result) {
+        throw "Usuário não encontrado";
+    }
+
+    const passwordMatch = await bcrypt.compare(senha, result.senha);
+
+    if(!passwordMatch) {
+        throw "Senha incorreta";
+    }
+
+    return ({
+        nome: result.nome,
+        email: result.email,
+        id_aluno: result.id_aluno,
+        id_curso: result.id_curso
+    });
 }
 
 async function criarAluno(nome, email, senha, id_curso) {
-    let query = `INSERT INTO Aluno (nome, email, senha, id_curso) VALUES ('${nome}','${email}','${senha}',${id_curso}) RETURNING nome,email,id_aluno,id_curso;`;
+    const salt = await bcrypt.genSalt(12);
+    const senhaHash = await bcrypt.hash(senha, salt);
+
+    let queryAluno = `SELECT email FROM Aluno where email='${email}'`;
+    let queryAlunoResult = await pool.query(queryAluno);
+    
+    if(queryAlunoResult.rows.length > 0) {
+        throw "Já existe um usuário cadastrado com esse email.";
+    }
+
+    let query = `INSERT INTO Aluno (nome, email, senha, id_curso) VALUES ('${nome}','${email}','${senhaHash}',${id_curso}) RETURNING nome,email,id_aluno,id_curso;`;
     let queryResult = await pool.query(query);
 
     let id_aluno = queryResult.rows[0].id_aluno;

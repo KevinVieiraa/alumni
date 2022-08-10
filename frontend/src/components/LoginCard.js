@@ -17,7 +17,7 @@ const LoginCard = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    let wrongCredentials = false;
     let userLoggedIn = false;
     
     const onClickLogin = async () => {
@@ -27,14 +27,14 @@ const LoginCard = () => {
             const parameters = "/aluno/?email=" + email + "&senha=" + password;
             let response = await fetch(base_url + parameters);
 
-            if (!response.ok) {
-                console.log(response.status);
+            if (response.status === 204) {
+                console.log("Usuário não encontrado");
+                wrongCredentials = true;
                 return;
             }
 
             let result = await response.json();
             window.sessionStorage.setItem("loggedUser", JSON.stringify(result));
-
             navigate("/home", {replace: true});
             // this.navigate('/home');
         }
@@ -69,6 +69,7 @@ const LoginCard = () => {
                             variant="standard"
                             label="Email"
                             type="email"
+                            error={wrongCredentials}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             sx={{ mb: 2 }}
@@ -78,6 +79,7 @@ const LoginCard = () => {
                             variant="standard"
                             label="Senha"
                             type="password"
+                            error={wrongCredentials}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             sx={{ mb: 5 }}
