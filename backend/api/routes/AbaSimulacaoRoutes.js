@@ -5,7 +5,6 @@ const abaSimulacaoController = require('../controllers/AbaSimulacaoController');
 
 router.get('/', async(req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await abaSimulacaoController.getAbaSimulacao(query.id_aluno);
         res.status(200).json(result);
@@ -19,7 +18,6 @@ router.get('/', async(req, res) => {
 
 router.post('/criarAbaSimulacao', async (req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await abaSimulacaoController.criarAbaSimulacao(query.id_aluno, query.nome_aba);
         res.status(201).json(result);
@@ -33,7 +31,6 @@ router.post('/criarAbaSimulacao', async (req, res) => {
 
 router.delete('/deleteAbaSimulacao', async (req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await abaSimulacaoController.deleteAbaSimulacao(query.id_aba, query.id_aluno);
         res.status(200).json(result);

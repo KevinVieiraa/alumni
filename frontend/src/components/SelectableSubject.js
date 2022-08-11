@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Select, MenuItem } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from './styles/SelectableSubject.module.css'
@@ -11,28 +11,59 @@ const customTheme = createTheme({
     }
 });
 
-const SelectableSubject = (props) => {
 
+
+const SelectableSubject = (props) => {
     let check;
+    let period = props.period;
+    let name = props.name;
+    let code = props.code;
+    let hours = props.hours;
+    let credits = props.credits;
+    let preRequisites = props.preRequisites;
+    let approved = props.approved;
+    let status;
+
+    if(props.status) {
+        status = props.status;
+    }
+
+    const [switchChecked, setSwitchChecked] = useState(approved);
+    const [markedStatus, setMarkedStatus] = useState(status);
+
     if(props.checkType === 'status') {
-        check = <div class={styles.selectContainer}>
+        check = <div className={styles.selectContainer}>
                     <Select
-                        value={"Matriculado"}
+                        value={markedStatus}
                         label="Status"
                         sx={{
                             height:1/1
                         }}
+                        onChange={(e) => {
+                            setMarkedStatus(e.target.value);
+                            props.onChangeStatus(code, period, e.target.value);
+                        }}
                     >
-                        <MenuItem value={"Não Realizado"}>Não Realizado</MenuItem>
-                        <MenuItem value={"Matriculado"}>Matriculado</MenuItem>
-                        <MenuItem value={"Concluído"}>Concluído</MenuItem>
+                        <MenuItem key={"Pendente"} value={"Pendente"}>Pendente</MenuItem>
+
+                        <MenuItem key={"Matriculado"} value={"Matriculado"}>Matriculado</MenuItem>
+
+                        <MenuItem key={"Concluído"}value={"Concluído"}>Concluído</MenuItem>
                     </Select>
                 </div>
     }
     else if(props.checkType === 'check') {
-        check = <div class={styles.selectContainer}>
+        check = <div className={styles.selectContainer}>
                     <h1>Aprovado?</h1>
-                    <Switch sx={{mx:4}}/>
+                    <Switch 
+                        sx={{mx:4}} 
+                        value={switchChecked} 
+                        checked={switchChecked}
+                        onClick={() => {
+                            setSwitchChecked(!switchChecked);
+                            props.onChangeStatus(code, period, switchChecked);
+                        }}
+                    />
                 </div>
     }
     else {
@@ -41,42 +72,40 @@ const SelectableSubject = (props) => {
 
     return (
         <ThemeProvider theme={customTheme}>
-            <div class={styles.selectableSubjectContainer}>
-                <div class={styles.subjectInfo}>
-                    <div class={styles.period}>
-                        1º
+            <div className={styles.selectableSubjectContainer}>
+                <div className={styles.subjectInfo}>
+                    <div className={styles.period}>
+                        {period + "º"}
                     </div>
                     <div>
                         <h1>
-                            Introdução à Ciência da Computação
+                            {name}
                         </h1>
                         <h2>
-                            INF16151
+                            {code}
                         </h2>
                     </div>
                 </div>
-                <div class={styles.subjectCredits}>
+                <div className={styles.subjectCredits}>
                     <h1>
-                        60h
+                        {hours + "h"}
                     </h1>
                     <h2>
-                        3 Créditos
+                        {credits + " Créditos"}
                     </h2>
                 </div>
-                <div class={styles.prerequisites}>
+                <div className={styles.prerequisites}>
                     <h1>
                         Pré-requisitos
                     </h1>
-                    <div class={styles.prerequisitesSubjects}>
-                        <h2>
-                            INF1615
-                        </h2>
-                        <h2>
-                            INF1615
-                        </h2>
-                        <h2>
-                            INF1615
-                        </h2>
+                    <div className={styles.prerequisitesSubjects}>
+                        {
+                            (preRequisites || []).map((preRequisite) => (
+                                <h2>
+                                    {preRequisite}
+                                </h2>
+                            ))
+                        }
                     </div>
                 </div>
                 {check}

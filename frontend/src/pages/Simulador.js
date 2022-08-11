@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Add } from '@mui/icons-material/';
+import { API_BASE_URL } from '../config';
+import { useNavigate } from 'react-router-dom';
 
 import Sidebar from '../components/Sidebar';
 import SelectableSubject from '../components/SelectableSubject';
@@ -21,7 +23,7 @@ const customTheme = createTheme({
     }
 });
 
-const Login = () => {
+const Simulador = () => {
     let buttonStyle = {
         height: 35, 
         width: 120, 
@@ -73,6 +75,39 @@ const Login = () => {
         'border-radius': 100
     };
 
+    // eslint-disable-next-line
+    const [abasAluno, setAbasAluno] = useState([]);
+    const navigate = useNavigate();
+
+    // eslint-disable-next-line
+    const checkLoggedUser = () => {
+        const loggedUser = window.sessionStorage.getItem("loggedUser");
+
+        if (!loggedUser) {
+            navigate("/login", { replace: true });
+            return;
+        }
+
+        const parsedUser = JSON.parse(loggedUser);
+        const userLoggedIn = parsedUser && parsedUser.email && parsedUser.nome;
+        if (!userLoggedIn) {
+            navigate("/login", { replace: true });
+        }
+    }
+
+    // eslint-disable-next-line
+    const getAbasAluno = async () => {
+        const loggedUser = window.sessionStorage.getItem("loggedUser");
+        const base_url = API_BASE_URL;
+        const parameters = "/abaSimulacao/?id_aluno=" + JSON.parse(loggedUser).id_aluno;
+
+        // eslint-disable-next-line
+        let response = await fetch(base_url + parameters);
+        
+        setAbasAluno('2023');
+        //setSelectedSubjects(result.disciplinas.sort((a, b) => a.periodo - b.periodo));
+    };
+
     return (
         <ThemeProvider theme={customTheme}>
             <div class={styles.simulationContainer}>
@@ -101,11 +136,12 @@ const Login = () => {
                             </div>
                         </div>
                         <div class={styles.buttonsContainer}>
+                            
                             <Button 
                                 variant="outlined"
                                 sx= { buttonStyle }
                             >
-                                2022/1asdasdasdasdsa
+                               2050
                             </Button>
                             <Button 
                                 variant="outlined"
@@ -133,4 +169,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Simulador;

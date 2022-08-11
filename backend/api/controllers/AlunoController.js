@@ -2,7 +2,7 @@ const request = require('request');
 const pool = require('../db.js');
 const bcrypt = require('bcrypt');
 
-//Caso o parametro id tenha sido passado, retorna uma batalha com o id específico, do contrário, retorna todas as batalhas
+//Autenticação do aluno na base de dados
 async function autenticacaoAluno(email, senha) {
     let query = `SELECT nome, email, id_aluno, id_curso, senha FROM Aluno where email='${email}'`;
     let queryResult = await pool.query(query);
@@ -26,6 +26,7 @@ async function autenticacaoAluno(email, senha) {
     });
 }
 
+//Criação de um novo aluno
 async function criarAluno(nome, email, senha, id_curso) {
     const salt = await bcrypt.genSalt(12);
     const senhaHash = await bcrypt.hash(senha, salt);
@@ -49,8 +50,9 @@ async function criarAluno(nome, email, senha, id_curso) {
     return result;
 }
 
+//Criação das disciplinas do aluno
 async function criarDisciplinasAluno(id_aluno, id_curso) {
-    let query = `SELECT id_disciplina from Disciplina where id_curso=${id_curso} and obrigatoria=TRUE;`;
+    let query = `SELECT id_disciplina from Disciplina where id_curso=${id_curso};`;
     let queryResult = await pool.query(query);
     let lista_disciplinas = queryResult.rows;
 
@@ -66,7 +68,7 @@ async function criarDisciplinasAluno(id_aluno, id_curso) {
     return result;
 }
 
-
+//Criação da anotação do aluno
 async function criarAnotacao(id_aluno){
     let query = `INSERT INTO Anotacao (id_aluno, texto_anotacao) VALUES (${id_aluno},' ');`
     let queryResult = await pool.query(query);

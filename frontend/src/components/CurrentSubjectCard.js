@@ -11,33 +11,39 @@ const customTheme = createTheme({
     }
 });
 
-const ProgressCard = () => {
+const CurrentSubjectCard = (props) => {
+    let period = props.period;
+    let name = props.name;
+    let code = props.code;
+    let hours = props.hours;
+    let credits = props.credits;
+
 
     return (
         <ThemeProvider theme={customTheme}>
-            <div class={styles.cardContainer}>
-                <div class={styles.subjectInfoContainer}>
-                    <h2 class={styles.period}>
-                        6º
+            <div className={styles.cardContainer}>
+                <div className={styles.subjectInfoContainer}>
+                    <h2 className={styles.period}>
+                        {period + "º"}
                     </h2>
-                    <div class={styles.subjectInfo}>
+                    <div className={styles.subjectInfo}>
                         <h1>
-                            Análise e Projeto de Algoritmos
+                            {name}
                         </h1>
                         <h2>
-                            INF6666
+                            {code}
                         </h2>
                     </div>
                 </div>
-                <div class={styles.creditsInfoContainer}>
+                <div className={styles.creditsInfoContainer}>
                     <h3>
-                        60h
+                        {hours + "h"}
                     </h3>
                     <h3>
-                        4 Créditos
+                        {credits +  " Créditos"}
                     </h3>
                 </div>
-                <div class={styles.statusContainer}>
+                <div className={styles.statusContainer}>
                     <Chip label="Cursando" sx={{color: 'white', backgroundColor: '#93e39b'}}/>
                 </div>
             </div>
@@ -45,4 +51,4 @@ const ProgressCard = () => {
     )
 }
 
-export default ProgressCard;
+export default CurrentSubjectCard;

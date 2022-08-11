@@ -1,6 +1,7 @@
 const request = require('request');
 const pool = require('../db.js');
 
+//Acesso às informações dos cursos
 async function getCursos() {
     let query = `SELECT id_curso, nome_curso FROM Curso;`;
     let queryResult = await pool.query(query);

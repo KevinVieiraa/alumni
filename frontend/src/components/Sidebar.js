@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Avatar } from '@mui/material/'
 import { Link, useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Home, Assessment, AutoGraph, DateRange, Logout } from '@mui/icons-material/';
+import { Home, Assessment, AutoGraph, Logout } from '@mui/icons-material/';
 import styles from './styles/Sidebar.module.css'
 
 const customTheme = createTheme({
@@ -20,7 +20,8 @@ const customTheme = createTheme({
 
 const Sidebar = (props) => {
     const navigate = useNavigate();
-
+    const loggedUser = window.sessionStorage.getItem("loggedUser");
+    const nome_aluno = JSON.parse(loggedUser).nome;
     let buttonStyle = {
         height: 45, 
         mb: 1, 
@@ -45,18 +46,18 @@ const Sidebar = (props) => {
 
     return (
         <ThemeProvider theme={customTheme}>
-            <div class={styles.sidebarContainer}>
-                <div class={styles.upperContainer}>
-                    <div class={styles.avatarContainer}>
+            <div className={styles.sidebarContainer}>
+                <div className={styles.upperContainer}>
+                    <div className={styles.avatarContainer}>
                         <Avatar 
                             alt="" 
                             src={process.env.PUBLIC_URL + '/profile_pic_default.svg'}
                             sx={{ width: 120, height: 120, mx:'auto', border: '4px solid #6D597A' }}
                         />
-                        <h1 class={styles.userName}>Lorem Ipsum</h1>
+                        <h1 className={styles.userName}>{nome_aluno}</h1>
                     </div>
                     
-                    <div class={styles.buttonsGroup}>
+                    <div className={styles.buttonsGroup}>
                         <Button 
                             component={ Link }
                             to="/home"
@@ -87,7 +88,7 @@ const Sidebar = (props) => {
                             Meu Progresso
                         </Button>
 
-                        <Button 
+                        {/* <Button 
                             component={ Link }
                             to="/simulador"
                             variant={(selectedButton === 'simulador' ? "contained" : "outlined")}
@@ -95,12 +96,12 @@ const Sidebar = (props) => {
                             sx= { buttonStyle }
                         >
                             Simulador de Horário
-                        </Button>
+                        </Button> */}
                     </div>
 
                 </div>
                 
-                <div class={styles.exitButtonContainer}>
+                <div className={styles.exitButtonContainer}>
                     <Button 
                         component={ Link }
                         to="/login"

@@ -5,7 +5,6 @@ const atividadeController = require('../controllers/AtividadeController');
 
 router.get('/', async(req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await atividadeController.getAtividade(query.id_aluno, query.categoria);
         res.status(200).json(result);
@@ -19,7 +18,6 @@ router.get('/', async(req, res) => {
 
 router.post('/criarAtividade', async (req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await atividadeController.criarAtividade(query.titulo, query.categoria, query.local, query.carga_horaria, query.data_inicio, query.data_fim, query.id_aluno);
         res.status(201).json(result);
@@ -33,7 +31,6 @@ router.post('/criarAtividade', async (req, res) => {
 
 router.delete('/deleteAtividade', async (req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await atividadeController.deleteAtividade(query.id_atividade, query.id_aluno);
         res.status(200).json(result);

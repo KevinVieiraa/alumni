@@ -16,8 +16,9 @@ const customTheme = createTheme({
 const LoginCard = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [wrongPassword, setWrongPassword] = useState(false);
+    const [wrongEmail, setWrongEmail] = useState(false);
     const navigate = useNavigate();
-    let wrongCredentials = false;
     let userLoggedIn = false;
     
     const onClickLogin = async () => {
@@ -26,17 +27,31 @@ const LoginCard = () => {
         if (email && password) {
             const parameters = "/aluno/?email=" + email + "&senha=" + password;
             let response = await fetch(base_url + parameters);
+            
+            let result = await response.json();
+            //Caso retorne 422 o usuario ou senha estão incorretos
+            if(response.status === 422) {
+                if(result.message === "Usuário não encontrado") {
+                    setEmail('');
+                    setPassword('');
+                    setWrongEmail(true);
+                    setWrongPassword(false);
+                }
+                if(result.message === "Senha incorreta") {
+                    setPassword('');
+                    setWrongPassword(true);
+                    setWrongEmail(false);
+                }
 
-            if (response.status === 204) {
-                console.log("Usuário não encontrado");
-                wrongCredentials = true;
                 return;
             }
+            else {
+                setWrongPassword(false);
+                setWrongEmail(false);
+            }
 
-            let result = await response.json();
             window.sessionStorage.setItem("loggedUser", JSON.stringify(result));
             navigate("/home", {replace: true});
-            // this.navigate('/home');
         }
     }
 
@@ -59,18 +74,19 @@ const LoginCard = () => {
 
     return (
         <ThemeProvider theme={customTheme}>
-            <div class={styles.loginCard}>
-                <div class={styles.loginFormContainer}>
-                    <div class={styles.loginForm}>
-                        <img class={styles.logo} src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
-                        <h1 class={styles.loginTitle}>Entrar</h1>
+            <div className={styles.loginCard}>
+                <div className={styles.loginFormContainer}>
+                    <div className={styles.loginForm}>
+                        <img className={styles.logo} src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
+                        <h1 className={styles.loginTitle}>Entrar</h1>
                         <TextField
                             required
                             variant="standard"
                             label="Email"
                             type="email"
-                            error={wrongCredentials}
+                            error={wrongEmail}
                             value={email}
+                            helperText={wrongEmail ? "Email incorreto" : ""}
                             onChange={(e) => setEmail(e.target.value)}
                             sx={{ mb: 2 }}
                         />
@@ -79,8 +95,9 @@ const LoginCard = () => {
                             variant="standard"
                             label="Senha"
                             type="password"
-                            error={wrongCredentials}
+                            error={wrongPassword}
                             value={password}
+                            helperText={wrongPassword ? "Senha incorreta" : ""}
                             onChange={(e) => setPassword(e.target.value)}
                             sx={{ mb: 5 }}
                         />
@@ -92,16 +109,16 @@ const LoginCard = () => {
                         >
                             ENTRAR
                         </Button>
-                        <h2 class={styles.registerText}>
-                            Não tem uma conta? <Link to="/cadastro"><button class={styles.registerButton}>Cadastre-se</button></Link>
+                        <h2 className={styles.registerText}>
+                            Não tem uma conta? <Link to="/cadastro"><button className={styles.registerButton}>Cadastre-se</button></Link>
                         </h2>
                     </div>
-                    <img class={styles.loginDrawing} src={process.env.PUBLIC_URL + '/pic_01.svg'} alt="" />
+                    <img className={styles.loginDrawing} src={process.env.PUBLIC_URL + '/pic_01.svg'} alt="" />
                 </div>
-                <div class={styles.welcomeMessageContainer}>
-                    <img class={styles.loginDrawingCard} src={process.env.PUBLIC_URL + '/pic_02.svg'} alt="" />
-                    <h1 class={styles.welcomeMessageTitle}>Alumni</h1>
-                    <h2 class={styles.welcomeMessageSubtitle}>A plataforma que você precisa para avançar no curso que você escolheu.</h2>
+                <div className={styles.welcomeMessageContainer}>
+                    <img className={styles.loginDrawingCard} src={process.env.PUBLIC_URL + '/pic_02.svg'} alt="" />
+                    <h1 className={styles.welcomeMessageTitle}>Alumni</h1>
+                    <h2 className={styles.welcomeMessageSubtitle}>A plataforma que você precisa para avançar no curso que você escolheu.</h2>
                 </div>
             </div>
         </ThemeProvider>

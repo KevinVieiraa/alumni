@@ -4,14 +4,18 @@ import { LinearProgress } from '@mui/material/';
 
 import styles from './styles/ProgressCard.module.css'
 
-
 const ProgressCard = (props) => {
-
+    let cardTitle = props.cardTitle;
+    let cardCurrentValue = props.currentValue;
+    let cardMaxValue = props.maxValue
     let cardIcon = props.cardIcon;
     let backgroundIcon = props.backgroundIcon;
     let backgroundColor = props.backgroundColor;
     let darkerColor = props.darkerColor;
     let barColor = props.barColor;
+
+    //let horaComplementar = undefined;
+    //let valorFinal = horaComplementar || 0; //retorna 0 ou a hora complementar se tiver
     const customTheme = createTheme({
         palette: {
             primary: {
@@ -19,32 +23,32 @@ const ProgressCard = (props) => {
             }
         }
     });
-
+    
     return (
         <ThemeProvider theme={customTheme}>
-            <div class={styles.cardContainer} style={{ 'background-color': backgroundColor }}>
-                <div class={styles.cardIcon} style={{ 'background-color': darkerColor }} >
+            <div className={styles.cardContainer} style={{ 'backgroundColor': backgroundColor }}>
+                <div className={styles.cardIcon} style={{ 'backgroundColor': darkerColor }} >
                     { cardIcon }
                 </div>
-                <div class={styles.backgroundIcon}>
+                <div className={styles.backgroundIcon}>
                     { backgroundIcon }
                 </div>
                 <h1>
-                    Disciplinas Obrigatórias
+                    { cardTitle }
                 </h1>
-                <div class={styles.progressContainer}>
-                    <div class={styles.progressTextContainer}>
+                <div className={styles.progressContainer}>
+                    <div className={styles.progressTextContainer}>
                         <h2>
-                            100%
+                            {(cardMaxValue === 0 ? 0 : parseInt( (cardCurrentValue/cardMaxValue) * 100 )) + "%"}
                         </h2>
                         <h2>
-                            200h/200h
+                            {cardCurrentValue + "h/" + cardMaxValue + "h"}
                         </h2>
                     </div>
-                    <div class={styles.progressBarContainer}>
+                    <div className={styles.progressBarContainer}>
                         <LinearProgress 
                             variant="determinate" 
-                            value={50}
+                            value={(cardMaxValue === 0 ? 0 : ((cardCurrentValue/cardMaxValue) * 100))}
                             sx={{ 
                                 height: 6, 
                                 borderRadius: 8

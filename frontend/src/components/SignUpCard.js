@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, MenuItem, Select } from '@mui/material/';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from './styles/SignUpCard.module.css'
@@ -19,6 +19,11 @@ const SignUpCard = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [degree, setDegree] = useState("");
+
+    const [wrongEmailFormat, setWrongEmailFormat] = useState("");
+    const [emailNotAvailable, setEmailNotAvailable] = useState("");
+    const [wrongRepeatPassword, setWrongRepeatPassword] = useState("");
+
     const navigate = useNavigate();
 
     let degrees = [{
@@ -36,8 +41,19 @@ const SignUpCard = () => {
         
         const parsedUser = JSON.parse(loggedUser);
         userLoggedIn = parsedUser && parsedUser.email && parsedUser.nome;
+        if(userLoggedIn) {
+            navigate("/home", {replace: true});
+        }
     }
 
+    const validateEmail = (email) => {
+        // eslint-disable-next-line
+        const format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        return format.test(email);
+    }
+
+    // eslint-disable-next-line
     const getDegrees = async () => {
         const base_url = API_BASE_URL;
         const parameters = "/curso/";
@@ -61,9 +77,20 @@ const SignUpCard = () => {
     
     const onClickSignUp = async () => {
         if(name && email && password && repeatPassword && degree) {
-            if(password !== repeatPassword) {
-                //Erro de senha diferente
+            if(!validateEmail(email)) {
+                setWrongEmailFormat(true);
                 return;
+            }
+            else {
+                setWrongEmailFormat(false);
+            }
+
+            if(password !== repeatPassword) {
+                setWrongRepeatPassword(true);
+                return;
+            }
+            else {
+                setWrongRepeatPassword(false);
             }
 
             const base_url = API_BASE_URL;
@@ -71,31 +98,21 @@ const SignUpCard = () => {
             let response = await fetch(base_url + parameters, {
                 method: "POST"
             });
-            if (!response.ok) {
-                console.log(response.status);
-                return;
-            }
 
+            let result = await response.json();
             if(response.status === 201) {
                 //Criou o aluno, redireciona para o cadastro das disciplinas
-                let result = await response.json();
                 window.sessionStorage.setItem("loggedUser", JSON.stringify(result));
                 navigate("/cadastro/preenchimento", {replace: true});
             }
-            else if(response.status === 400) {
-                //Nao foi possivel criar o aluno
+            else if(response.status === 422) {
+                setEmailNotAvailable(true);
             }
         }
     }
 
     checkLoggedUser();
-    if(userLoggedIn) {
-        return (
-            <Navigate to="/home"/>
-        )
-    }
-
-    getDegrees();
+    // getDegrees();
     return (
         <ThemeProvider theme={customTheme}>
             <div class={styles.signUpCard}>
@@ -117,6 +134,8 @@ const SignUpCard = () => {
                             label="Email"
                             type="email"
                             value={email}
+                            error={wrongEmailFormat || emailNotAvailable}
+                            helperText={ (wrongEmailFormat ? "Formato do email inválido" : "") || (emailNotAvailable ? "Este email já está em uso" : "") }
                             onChange={(e) => setEmail(e.target.value)}
                             sx = {{ mb:2 }}
                         />
@@ -134,6 +153,8 @@ const SignUpCard = () => {
                             variant="standard"
                             label="Confirmação de Senha"
                             value={repeatPassword}
+                            error={wrongRepeatPassword}
+                            helperText={wrongRepeatPassword ? "A confirmação de senha deve ser igual à senha" : ""}
                             onChange={(e) => setRepeatPassword(e.target.value)}
                             type="password"
                             sx = {{ mb:5 }}

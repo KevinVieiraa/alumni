@@ -5,7 +5,6 @@ const discplinaSimuladaController = require('../controllers/DisciplinaSimuladaCo
 
 router.get('/', async(req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await discplinaSimuladaController.getDisciplinaSimulada(query.id_aluno, query.id_aba);
         res.status(200).json(result);
@@ -19,7 +18,6 @@ router.get('/', async(req, res) => {
 
 router.post('/criarDisciplinaSimulada', async (req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await discplinaSimuladaController.criarDisciplinaSimulada(query.id_aba, query.id_disciplina);
         res.status(201).json(result);
@@ -33,7 +31,6 @@ router.post('/criarDisciplinaSimulada', async (req, res) => {
 
 router.delete('/deleteDisciplinaSimulada', async (req, res) => {
     const query = req.query;
-    console.log(query)
     try{
         let result = await discplinaSimuladaController.deleteDisciplinaSimulada(query.id_aba, query.id_disciplina_simulada);
         res.status(200).json(result);

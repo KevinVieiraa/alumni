@@ -1,6 +1,7 @@
 const request = require('request');
 const pool = require('../db.js');
 
+//Acesso às informações da disciplina simulada
 async function getDisciplinaSimulada (id_aluno, id_aba) {
     let query = `SELECT d.codigo, d.nome_disciplina, d.periodo, d.creditos, d.carga_horaria, pr.id_disciplina_requisito
                  FROM DisciplinaSimulada ds
@@ -15,6 +16,7 @@ async function getDisciplinaSimulada (id_aluno, id_aba) {
     return result;
 };
 
+//Criação de uma disciplina simulada para o aluno
 async function criarDisciplinaSimulada (id_aba, id_disciplina) {
     let query = `INSERT INTO DisciplinaSimulada(id_aba, id_disciplina) VALUES (${id_aba},'${id_disciplina}')`;
     let queryResult = await pool.query(query);
@@ -23,6 +25,7 @@ async function criarDisciplinaSimulada (id_aba, id_disciplina) {
     return result;
 };
 
+//Deleção da disciplina simulada do aluno
 async function deleteDisciplinaSimulada (id_aba, id_disciplina_simulada) {
     let query = `DELETE FROM DisciplinaSimulada WHERE id_aba = ${id_aba} AND id_disciplina_simulada = ${id_disciplina_simulada}`;
     let queryResult = await pool.query(query);
