@@ -1,0 +1,94 @@
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 40px 60px 40px 30px;
+}
+
+.headerContainer h1 {
+    font-size: 26px;
+    margin: 0px;
+    color: #404040;
+}
+
+.mainContentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 60px 60px 30px;
+}
+
+.cardsContainer span:not(:last-child) {
+    width: 100%;
+    margin-right: 20px;
+}
+
+.cardsContainer span:last-child {
+    width: 100%;
+}
+
+.subjectsContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 60px 40px 30px;
+}
+
+.subjectsContainer h1 {
+    font-size: 22px;
+    margin: 0px;
+    color: #404040;
+}
+
+.subjectsCards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-top: 30px;
+}
+
+.subjectCardContainer{
+    padding: 20px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.notesContainer {
+    width: 20%;
+    background-color: rgb(255, 255, 255);
+}
+
+.notesContainer h1 {
+    font-size: 26px;
+    margin: 0px;
+    color: #404040;
+    margin: 120px 60px 10px 0px;
+}
+
+.notesContainer h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px;
+    color: #404040;
+    margin: 0px 60px 40px 0px;
+    max-height: 500px;
+}

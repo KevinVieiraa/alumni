@@ -1,0 +1,610 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Alumni REST API",
+    "description": "API da plataforma Alumni"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/aluno/": {
+      "get": {
+        "tags": [
+            "Aluno"
+          ],
+        "description": "Autenticação do aluno na base de dados.",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "senha",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/aluno/criarAluno": {
+      "post": {
+        "tags": [
+          "Aluno"
+        ],
+        "description": "Cria um novo aluno.",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "senha",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id_curso",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/curso/": {
+      "post": {
+        "tags": [
+          "Curso"
+        ],
+        "description": "Acessa todos os cursos da plataforma.",
+        "parameters": [
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/atividade/": {
+        "get": {
+          "tags": [
+              "Atividade"
+            ],
+          "description": "Acessa as atividades do aluno de acordo com a categoria.",
+          "parameters": [
+            {
+              "name": "id_aluno",
+              "in": "query",
+              "type": "string",
+              "required": true
+            },
+            {
+                "name": "categoria",
+                "in": "query",
+                "type": "string",
+                "required": true
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+    "/atividade/criarAtividade": {
+      "post": {
+        "tags": [
+            "Atividade"
+          ],
+        "description": "Cria uma nova atividade para um aluno.",
+        "parameters": [
+          {
+            "name": "titulo",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "categoria",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "local",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "carga_horaria",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "data_inicio",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "data_fim",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/atividade/deleteAtividade": {
+      "delete": {
+        "tags": [
+            "Atividade"
+          ],
+        "description": "Deleta a atividade de um aluno.",
+        "parameters": [
+          {
+            "name": "id_atividade",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "stringernal Server Error"
+          }
+        }
+      }
+    },
+    "/disciplinaAluno/listaDisciplinasPeriodo": {
+      "get": {
+        "tags": [
+            "Disciplina Aluno"
+          ],
+        "description": "Lista todas as disciplinas do aluno de um determinado período.",
+        "parameters": [
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "periodo",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/disciplinaAluno/listaDisciplinasAluno": {
+      "get": {
+        "tags": [
+            "Disciplina Aluno"
+          ],
+        "description": "Lista todas as disciplinas do aluno.",
+        "parameters": [
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/disciplinaAluno/infoDisciplinaAluno": {
+      "get": {
+        "tags": [
+            "Disciplina Aluno"
+          ],
+        "description": "Acessa as informações de uma determinada disciplina de um aluno.",
+        "parameters": [
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "codDisciplina",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/disciplinaAluno/statusDisciplinaAluno": {
+      "patch": {
+        "tags": [
+            "Disciplina Aluno"
+          ],
+        "description": "Atualiza o status de uma disciplina de um aluno.",
+        "parameters": [
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id_disciplina",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/disciplinaAluno/listStatusDisciplinaAluno": {
+      "patch": {
+        "tags": [
+            "Disciplina Aluno"
+          ],
+        "description": "Atualiza o status de uma lista de disciplinas.",
+        "parameters": [
+          {
+            "name": "id_disciplina",
+            "in": "query",
+            "type": "List[string]",
+            "required": true
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "type": "List[string]",
+            "required": true
+          },
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/disciplinaSimulada/": {
+        "get": {
+          "tags": [
+              "Disciplina Simulada"
+            ],
+          "description": "Retorna informações da disciplina simulada",
+          "parameters": [
+            {
+              "name": "id_aluno",
+              "in": "query",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "id_aba",
+              "in": "query",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+    "/disciplinaSimulada/criarDisciplinaSimulada": {
+      "post": {
+        "tags": [
+            "Disciplina Simulada"
+          ],
+        "description": "Cria uma disciplina simulada para o aluno",
+        "parameters": [
+          {
+            "name": "id_aba",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id_disciplina",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/disciplinaSimulada/deleteDisciplinaSimulada": {
+      "delete": {
+        "tags": [
+            "Disciplina Simulada"
+          ],
+        "description": "Deleta a disciplina simulada do aluno",
+        "parameters": [
+          {
+            "name": "id_aba",
+            "in": "query",
+            "type": "string",
+            "required": true
+
+          },
+          {
+            "name": "id_disciplina_simulada",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "stringernal Server Error"
+          }
+        }
+      }
+    },
+    "/abaSimulacao/": {
+        "get": {
+          "tags": [
+              "Aba Simulação"
+            ],
+          "description": "Retorna todas abas de simulação de um aluno",
+          "parameters": [
+            {
+              "name": "id_aluno",
+              "in": "query",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+    "/abaSimulacao/criarAbaSimulacao": {
+      "post": {
+        "tags": [
+            "Aba Simulação"
+          ],
+        "description": "Cria uma nova aba de simulação para o aluno",
+        "parameters": [
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "nome_aba",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/abaSimulacao/deleteAbaSimulacao": {
+      "delete": {
+        "tags": [
+            "Aba Simulação"
+          ],
+        "description": "Deleta uma aba de simulação do aluno",
+        "parameters": [
+          {
+            "name": "id_aba",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "stringernal Server Error"
+          }
+        }
+      }
+    },
+    "/anotacao/": {
+        "get": {
+          "tags": [
+              "Anotação"
+            ],
+          "description": "Retorna a anotação do aluno",
+          "parameters": [
+            {
+              "name": "id_aluno",
+              "in": "query",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+    "/anotacao/editarAnotacao": {
+      "patch": {
+        "tags": [
+            "Anotação"
+          ],
+        "description": "Edita o conteúdo da anotação do aluno",
+        "parameters": [
+          {
+            "name": "id_aluno",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "conteudo",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  }
+}

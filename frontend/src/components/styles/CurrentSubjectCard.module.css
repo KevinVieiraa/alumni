@@ -1,0 +1,73 @@
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    /* background-color: #f7f4fc; */
+    /* border-radius: 10px; */
+}
+
+.subjectInfoContainer {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+.subjectInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.subjectInfo h1 {
+    font-size: 21px;
+    text-align: left;
+    color: #404040;
+    margin: 0px;
+}
+
+.subjectInfo h2 {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    color: #575757;
+    margin: 0px;
+}
+
+.period {
+    background-color: #3F3D56;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+
+    line-height: 50px;
+    color: #F5F5F5;
+    font-size: 20px;
+    font-weight: bold;
+    
+    align-self: center;
+    text-align: center;
+    margin: 0px;
+    margin-right: 15px;
+}
+
+.creditsInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.creditsInfoContainer h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #595959;
+    align-self: center;
+    margin: 0px;
+}
+
+.statusContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
